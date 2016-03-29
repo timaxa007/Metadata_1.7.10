@@ -43,37 +43,23 @@ public class BlockMetadata extends Block {
 	private IIcon[] icon_array;
 
 	public BlockMetadata() {
-		super(Material.iron);
-		setCreativeTab(ModMetadata.tab_metadata);
+		super(Material.circuits);
+		setCreativeTab(CreativeTabs.tabBlock);
 		setHardness(0.3F);
 		setResistance(1.0F);
 		setBlockTextureName(ModMetadata.MODID + ":block_metadata");
 		setBlockName("block_metadata");
 	}
-
-	public int quantityDropped(Random random) {
-		return 0;
+	
+	@Override
+	public int damageDropped(int metadata) {
+	    return metadata;
 	}
-
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		ret.add(new ItemStack(ModMetadata.block_metadata, 1, metadata));
-		return ret;
-	}
-
-	public int idPicked(World world, int x, int y, int z) {
-		return 0;
-	}
-
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
-		return new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z));
-	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
 		world.setBlockMetadataWithNotify(x, y, z, is.getItemDamage(), 3);
 	}
-
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata) {
