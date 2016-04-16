@@ -56,11 +56,6 @@ public class BlockMetadata extends Block {
 	    return metadata;
 	}
 	
-	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
-		world.setBlockMetadataWithNotify(x, y, z, is.getItemDamage(), 3);
-	}
-
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int metadata) {
 		if (metadata >= 0 && metadata < BlockMetadata.metadata.length) {

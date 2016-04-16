@@ -1,23 +1,12 @@
 package metadata;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemMultiTexture;
 
-public class ItemBlockMetadata extends ItemBlock {
+public class ItemBlockMetadata extends ItemMultiTexture {
 
 	public ItemBlockMetadata(Block block) {
-		super(block);
-		setMaxDamage(0);
-		setHasSubtypes(true);
-	}
-
-	public String getUnlocalizedName(ItemStack is) {
-		int metadata = is.getItemDamage();
-		if (metadata >= 0 && metadata < BlockMetadata.metadata.length) {
-			return super.getUnlocalizedName() + "." + BlockMetadata.metadata[metadata];
-		}
-		return super.getUnlocalizedName();
+		super(block, block, BlockMetadata.metadata);
 	}
 
 }
